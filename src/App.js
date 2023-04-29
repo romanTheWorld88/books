@@ -7,6 +7,10 @@ function App() {
   const [books, setBooks] = useState([]);
 
 
+  // use map to update an object in an array
+  // if id is equal to id passed, it is the one we want to update
+  // so we update by returning a new object that takes existing properties from 
+  // book and puts new title in 
   const editBookById = (id, newTitle) => {
     const updatedBooks = books.map((book) => {
       if (book.id === id){
@@ -38,6 +42,7 @@ function App() {
   };
   return (
     <div className="app">
+      <h1>Reading List</h1>
       <BookList onEdit = {editBookById} books={books} onDelete={deleteBookById} />
       <BookCreate onCreate={createBook} />
     </div>

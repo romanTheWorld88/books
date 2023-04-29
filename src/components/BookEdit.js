@@ -1,7 +1,14 @@
 import {useState} from 'react';
 
 
-  function BookEdit({ book, onEdit, onSubmit }) {
+//bookEdit documentation
+
+// book -> an object with an id and title
+// onEdit -> function thats called when user submits a form
+// onSubmit -> function thats called when user submits a form
+
+
+  function BookEdit({ book, onSubmit }) {
     const [title, setTitle] = useState(book.title);
 
     const handleChange = (event) => {
@@ -12,8 +19,8 @@ import {useState} from 'react';
     const handleSubmit = (event) => {
       event.preventDefault();
 
-      onEdit(book.id, title);
-      onSubmit();
+      // when we call onSubmit, it will run handleSubmit, passing up id and title
+      onSubmit(book.id, title);
     };
 
     return (

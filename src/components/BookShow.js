@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import BookEdit from './BookEdit';
+import { useState } from "react";
+import BookEdit from "./BookEdit";
 
 function BookShow({ book, onDelete, onEdit, onSubmit }) {
   const [showEdit, setShowEdit] = useState(false);
@@ -13,20 +13,23 @@ function BookShow({ book, onDelete, onEdit, onSubmit }) {
     setShowEdit(!showEdit);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (id, newTitle) => {
     setShowEdit(false);
+    onEdit(id, newTitle);
+    // prop passed into bookShow (from App.js), must provide id and title
   };
 
   // let allows us change variable over time
   let content = <h3>{book.title}</h3>;
 
   if (showEdit) {
-    content = <BookEdit onSubmit={handleSubmit} onEdit={onEdit} book={book} />;
+    content = <BookEdit onSubmit={handleSubmit} book={book} />;
   }
 
   // clicking on picture icon will change what we see (state)
   return (
     <div className="book-show">
+      <img alt="books" src="https://picsum.photos/300/200" />
       <div>{content}</div>
       <div className="actions">
         <button className="edit" onClick={handleEditClick}>
